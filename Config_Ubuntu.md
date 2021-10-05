@@ -5,6 +5,10 @@
 dpkg)reconfigure keyboqrd)configurqtion
 dpkg-reconfigure keyboard-configuration
 ```
+- If this does not work
+```bash
+loadkeys fr
+```
 
 - Configure the Wi-Fi
 ```bash
