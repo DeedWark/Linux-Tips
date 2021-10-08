@@ -20,7 +20,7 @@ wifis:
    wlan0:
       optional: true
       access-points:
-         "SSID-NAME-HERE"
+         "SSID-NAME-HERE":
             password: "PASSWORD"
       dhcp4: true
 ```
