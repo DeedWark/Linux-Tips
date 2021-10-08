@@ -47,3 +47,9 @@ network:
 ```
 netplan apply
 ```
+- If any problems
+```bash
+touch /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
+
+replace 50-cloud-init.yaml by 01-netcfg.yaml
+```
