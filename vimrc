@@ -13,6 +13,7 @@ filetype indent on
 " call plug#begin()
 " Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
 " Plug 'darrikonn/vim-gofmt'
+" Plug 'ayu-theme/ayu-vim'
 " call plug#end()
 " set termguicolors
 " let ayucolor="dark"
