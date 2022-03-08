@@ -13,7 +13,7 @@ check_uid() {
 pkg_mngr() {
     PACKAGES="curl wget vim git tmux"
     os_id=$(grep -iE '^ID=("|)' /etc/os-release)
-    
+
     case ${os_id} in
     *debian* | *ubuntu*)
         apt-get update &&
@@ -55,26 +55,34 @@ pkg_mngr() {
 }
 
 tmux_config() {
-    curl -s "https://raw.githubusercontent.com/DeedWark/Linux-Tips/main/tmux.conf" \
-         -o ${HOME}/.tmux.conf
+    $(which curl) -s "https://raw.githubusercontent.com/DeedWark/Linux-Tips/main/tmux.conf" \
+        -o ${HOME}/.tmux.conf
 }
 
 vim_config() {
     mkdir -p ${HOME}/.vim/autoload ${HOME}/.vim/colors
 
     # Install Plug VIm
-    curl -sfLo ${HOME}/.vim/autoload/plug.vim --create-dirs \
+    $(which curl) -sfLo ${HOME}/.vim/autoload/plug.vim --create-dirs \
         "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 
     # Install ayu-theme
-    curl -s "https://raw.githubusercontent.com/ayu-theme/ayu-vim/master/colors/ayu.vim" \
-         -o ${HOME}/.vim/colors/ayu.vim
+    $(which curl) -s "https://raw.githubusercontent.com/ayu-theme/ayu-vim/master/colors/ayu.vim" \
+        -o ${HOME}/.vim/colors/ayu.vim
 
     # Install my .vimrc
-    curl -s "https://raw.githubusercontent.com/DeedWark/Linux-Tips/main/vimrc" \
-         -o ${HOME}/.vimrc
+    $(which curl) -s "https://raw.githubusercontent.com/DeedWark/Linux-Tips/main/vimrc" \
+        -o ${HOME}/.vimrc
     sed -i 's/colorscheme koehler/" colorscheme koehler/g' ${HOME}/.vimrc
     sed -i 's/^" //g' ${HOME}/.vimrc
+}
+
+man_pp() {
+    $(which curl) -s "https://raw.githubusercontent.com/DeedWark/Linux-Tips/main/man%2B%2B" \
+        -o ${HOME}/manify
+    man_path=$(which man)
+    mv "${man_path}" "${man_path}.old"
+    mv ${HOME}/manify "${man_path}"
 }
 
 main() {
@@ -82,8 +90,9 @@ main() {
     pkg_mngr
     tmux_config
     vim_config
+    man_pp
     echo
-    echo "Setup done | To configure vim: $> vim && \":PlugInstall\""
+    echo "Setup done \!"
     echo
 }
 
