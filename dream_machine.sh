@@ -19,7 +19,7 @@ pkg_mngr() {
         apt-get update &&
             apt-get install -y ${PACKAGES}
         ;;
-    *centos* | *rhel* | *fedora* | *photon* | *amzn* | *oracle* | *ol* )
+    *centos* | *rhel* | *fedora* | *photon* | *amzn* | *oracle* | *ol*)
         yum update &&
             yum install -y ${PACKAGES}
         ;;
@@ -80,9 +80,17 @@ vim_config() {
 man_pp() {
     $(which curl) -s "https://raw.githubusercontent.com/DeedWark/Linux-Tips/main/man%2B%2B" \
         -o ${HOME}/manify
-    man_path=$(which man)
-    mv "${man_path}" "${man_path}.old"
-    mv ${HOME}/manify "${man_path}"
+    mv ${HOME}/manify /usr/bin/manify
+    if [[ -f "${HOME/.bash_aliases/}" ]]; then
+        if grep -qE "^if \[ -f ~/.bash_aliases" ${HOME}/.bashrc; then
+            echo "alias man='manify'" >>${HOME}/.bash_aliases
+        fi
+    elif [[ -f "${HOME}/.bashrc" ]]; then
+        echo "alias man='manify'" >>${HOME}/.bashrc
+    else
+        echo "You does not have any .bashrc/.bash_aliases files."
+        echo "Add manually \"alias man='manify'\" to your .<shell>rc file."
+    fi
 }
 
 main() {
