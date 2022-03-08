@@ -19,7 +19,7 @@ pkg_mngr() {
         apt-get update &&
             apt-get install -y ${PACKAGES}
         ;;
-    *centos* | *rhel* | *fedora* | *photon* | *amzn*)
+    *centos* | *rhel* | *fedora* | *photon* | *amzn* | *oracle* | *ol* )
         yum update &&
             yum install -y ${PACKAGES}
         ;;
