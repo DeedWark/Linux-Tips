@@ -73,8 +73,8 @@ vim_config() {
     # Install my .vimrc
     $(which curl) -s "https://raw.githubusercontent.com/DeedWark/Linux-Tips/main/vimrc" \
         -o ${HOME}/.vimrc
-    sed -i 's/colorscheme koehler/" colorscheme koehler/g' ${HOME}/.vimrc
     sed -i 's/^" //g' ${HOME}/.vimrc
+    sed -i 's/colorscheme koehler/" colorscheme koehler/g' ${HOME}/.vimrc
 }
 
 man_pp() {
