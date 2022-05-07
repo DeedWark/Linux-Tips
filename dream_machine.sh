@@ -123,7 +123,7 @@ main() {
 	pkg_mngr
 	tmux_config
 	vim_config
-  aliases_config
+        aliases_config
 	man_pp
 	echo
 	echo "Setup done \!"
