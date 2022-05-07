@@ -103,18 +103,18 @@ aliases_config() {
 
 man_pp() {
 	$(which curl) -s "https://raw.githubusercontent.com/DeedWark/Linux-Tips/main/man%2B%2B" \
-		-o ${HOME}/manify
-	mv ${HOME}/manify /usr/bin/manify
-	chmod +x /usr/bin/manify
+		-o "${HOME}/man++"
+	mv "${HOME}/man++" "/usr/bin/man++"
+	chmod +x "/usr/bin/man++"
 	if [[ -f "${HOME/.bash_aliases/}" ]]; then
 		if grep -qE "^if \[ -f ~/.bash_aliases" ${HOME}/.bashrc; then
-			echo "alias man='manify'" >>${HOME}/.bash_aliases
+			echo "alias man='man++'" >>${HOME}/.bash_aliases
 		fi
 	elif [[ -f "${HOME}/.bashrc" ]]; then
-		echo "alias man='manify'" >>${HOME}/.bashrc
+		echo "alias man='man++'" >>${HOME}/.bashrc
 	else
 		echo "You does not have any .bashrc/.bash_aliases files."
-		echo "Add manually \"alias man='manify'\" to your .<shell>rc file."
+		echo "Add manually \"alias man='man++'\" to your .<shell>rc file."
 	fi
 }
 
