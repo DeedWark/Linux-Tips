@@ -105,6 +105,7 @@ man_pp() {
 	$(which curl) -s "https://raw.githubusercontent.com/DeedWark/Linux-Tips/main/man%2B%2B" \
 		-o ${HOME}/manify
 	mv ${HOME}/manify /usr/bin/manify
+	chmod +x /usr/bin/manify
 	if [[ -f "${HOME/.bash_aliases/}" ]]; then
 		if grep -qE "^if \[ -f ~/.bash_aliases" ${HOME}/.bashrc; then
 			echo "alias man='manify'" >>${HOME}/.bash_aliases
