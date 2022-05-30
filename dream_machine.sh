@@ -4,56 +4,6 @@
 # Date: 2022-03-05
 # Version: 1.0.0
 
-check_uid() {
-	[[ "${UID}" -ne 0 ]] &&
-		echo 'You are not root!' &&
-		exit 1
-}
-
-pkg_mngr() {
-	PACKAGES="curl wget vim git tmux"
-	os_id=$(grep -iE '^ID=("|)' /etc/os-release)
-
-	case ${os_id} in
-	*debian* | *ubuntu*)
-		apt-get update &&
-			apt-get install -y ${PACKAGES}
-		;;
-	*centos* | *rhel* | *fedora* | *photon* | *amzn* | *oracle* | *ol*)
-		yum update &&
-			yum install -y ${PACKAGES}
-		;;
-	*arch* | *manjaro*)
-		pacman -Syy --noconfirm &&
-			pacman -S --noconfirm ${PACKAGES}
-		;;
-	*alpine*)
-		apk update &&
-			apk add --no-cache ${PACKAGES}
-		;;
-	*solus*)
-		eopkg update-repo &&
-			eopkg install -y ${PACKAGES}
-		;;
-	*opensuse*)
-		zypper update -y &&
-			zypper install -y ${PACKAGES}
-		;;
-	*gentoo*)
-		emerge --sync &&
-			emerge ${PACKAGES}
-		;;
-	*clear-linux-os*)
-		swupd update &&
-			swupd bundle-add ${PACKAGES}
-		;;
-	*mageia*)
-		dnf update -y &&
-			dnf install -y ${PACKAGES}
-		;;
-	esac
-}
-
 tmux_config() {
 	$(which curl) -s "https://raw.githubusercontent.com/DeedWark/Linux-Tips/main/tmux.conf" \
 		-o ${HOME}/.tmux.conf
@@ -119,8 +69,6 @@ man_pp() {
 }
 
 main() {
-	check_uid
-	pkg_mngr
 	tmux_config
 	vim_config
         aliases_config
