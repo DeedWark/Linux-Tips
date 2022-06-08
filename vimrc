@@ -1,7 +1,7 @@
 syntax on
 colorscheme koehler
 set backspace=2
-set mouse=r
+set mouse=a
 set nu
 set smartindent
 set expandtab
