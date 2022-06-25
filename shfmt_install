@@ -1,0 +1,3 @@
+curl -sS https://webinstall.dev/shfmt | bash
+
+:Shfmt -i 4 # on vim
