@@ -23,6 +23,7 @@ filetype indent on
 " SHORTCUT
 cmap w!! w !sudo tee >/dev/null %
 cmap teebag w !sudo tee >/dev/null %
+cmap hbash 0put =\"#!/bin/bash\n# Description:\n# Author:\n# Date:\n# Version:\n\n\n\"
 
 " AUTOMATION
 autocmd BufNewFile *.sh 0put =\"#!/bin/bash\<nl># Description:\<nl># Author:\<nl># Date:\<nl># Version:\<nl>\<nl>\"|$
