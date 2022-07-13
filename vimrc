@@ -1,3 +1,4 @@
+" VIM CONFIG
 syntax on
 colorscheme koehler
 set backspace=2
@@ -18,3 +19,10 @@ filetype indent on
 " set termguicolors
 " let ayucolor="dark"
 " colorscheme ayu
+
+" SHORTCUT
+cmap w!! w !sudo tee >/dev/null %
+cmap teebag w !sudo tee >/dev/null %
+
+" AUTOMATION
+autocmd BufNewFile *.sh 0put =\"#!/bin/bash\<nl># Description:\<nl># Author:\<nl># Date:\<nl># Version:\<nl>\<nl>\"|$
